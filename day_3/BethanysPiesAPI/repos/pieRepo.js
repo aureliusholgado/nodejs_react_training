@@ -1,6 +1,6 @@
 const { FILE } = require('dns');
 let fs = require('fs')
-const FILE_NAME = "./assets/pies.json"
+const FILE_NAME = "./assets/pies2.json"
 
 let pieRepo = {
     

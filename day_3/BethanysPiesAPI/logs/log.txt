@@ -1,0 +1,4 @@
+********************************************************************************
+Date/Time: 10/10/2023
+Exception Info: {"status":500,"statusText":"Internal Server Error","message":"ENOENT: no such file or directory, open 'C:\\Users\\aurelius.holgado\\Documents\\nodejs_react_training\\day_3\\BethanysPiesAPI\\assets\\pies2.json'","error":{"erno":-4058,"call":"open","code":"INTERNAL_SERVER_ERROR","message":"ENOENT: no such file or directory, open 'C:\\Users\\aurelius.holgado\\Documents\\nodejs_react_training\\day_3\\BethanysPiesAPI\\assets\\pies2.json'"},"requestInfo":{"hostname":"localhost","path":"/api/"}}
+********************************************************************************

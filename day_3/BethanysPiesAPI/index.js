@@ -1,7 +1,8 @@
 // Bring in the express server and create the application
 let express = require('express');
 let app = express();
-let pieRepo = require('./repos/pieRepo')
+let pieRepo = require('./repos/pieRepo');
+let errorHelper = require('./helpers/errorHelpers');
 
 // Use the express Router object
 let router = express.Router();
@@ -42,6 +43,7 @@ router.get('/', function (req, res, next) {
         
         // 2nd Argument(reject)
         function (err) {
+            // next() is express' default error handler which has a default error message (see bottom app.use)
             next(err)
         }
     )
@@ -323,6 +325,25 @@ router.delete('/:id', function(req, res, next) {
 
 // Configure router so all routes are prefixed with /api/v1
 app.use('/api/', router);
+
+// ERROR HANDLERS
+
+    // This app.use for exception handling is placed last since app.use is invoked by order of placement, and we do now want these to be invoked first, but as a last resort
+    // What happened here is that we created our custom middleware for express' default next() exception handler
+    // When next() function is triggered by the error, it will look for these specific middlewares and pass the 'err' argument to it according to which is most appropriate
+    // We placed the custom errorHandler functions in helpers/errorHelpers.js in order to separate them from the routes; not how it is exported
+
+    // Configure exception logger to console
+    // app.use(errorHelper.logErrorsToConsole);
+
+    // Inpute excpetion and error logs in logs/log.txt file
+    app.use(errorHelper.logErrorsToFile);
+
+    // Configure client error handler
+    app.use(errorHelper.clientErrorHandler);
+
+    // Configure catch-all exception middleware last
+    app.use(errorHelper.errorHandler);
 
 // Create server to listen on port 5000
 var server = app.listen(5000, () => {

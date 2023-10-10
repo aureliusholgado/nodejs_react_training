@@ -7,3 +7,31 @@
     <li>{{name}}</li> {{!-- this is the data.name --}}
     {{/data}}
 </ul>
+
+<div id="table">
+    <table>
+        
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Whole Price</th>
+            <th>Slice Price</th>
+            <th>Slice Calories</th>
+            <th>Image URL</th>
+        </thead>
+
+        {{#data}}
+        <tbody>
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>{{wholePrice}}</td>
+                <td>{{slicePrice}}</td>
+                <td>{{sliceCalories}}</td>
+                <td>{{imageUrl}}</td>
+            </tr>
+        </tbody>
+        {{/data}}
+
+    </table>
+</div>

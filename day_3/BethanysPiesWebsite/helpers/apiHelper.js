@@ -13,7 +13,7 @@ let apiHelper = {
                 { json:true }, 
 
                 // Arg 3: function to take place
-                function (err, res, body) {
+                (err, res, body) => {
                     if (err) {
                         reject(err)
                     }else{
@@ -27,4 +27,4 @@ let apiHelper = {
     }
 }
 
-module.exports = apiHelper
+module.exports = apiHelper;

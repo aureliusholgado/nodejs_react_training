@@ -4,12 +4,13 @@ const apiHelper = require('../helpers/apiHelper')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  
+  //res.render('index', { title: "Bethany's Pie Shop" });
+
   apiHelper.callApi('http://localhost:5000/api/')
   
   // the data from callApi() function is stored in 'response'
   .then(response => {
-    console.log(response);
+    // console.log(response);
     res.render('index', { title: "Bethany's Pie Shop", data: response.data})
   })
 

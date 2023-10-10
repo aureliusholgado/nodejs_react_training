@@ -139,6 +139,185 @@ router.post('/', function (req, res, next) {
     )
 })
 
+router.put('/:id', function (req, res, next) {
+    
+    // LOGIC: check first if a pie is existing, then perform update()
+    pieRepo.getById(
+        
+        // getById Arg 1
+        req.params.id, 
+        
+        // getById Arg 2 (data here is now the retrieved pie)
+        function(data){
+
+            // if a pie is retrieved, update function will work
+            if(data){
+                pieRepo.update(
+
+                    // update Arg 1
+                    req.body, 
+
+                    // update Arg 2
+                    req.params.id, 
+
+                    // update Arg 3
+                    function (data) {
+                        res.status(200).json({
+                            "status": 200,
+                            "statusText": "OK",
+                            "message": "Pie " + req.params.id + " updated",
+                            "data": data
+                        })
+                    },
+
+                    // update Arg 4
+                    function(err){
+                        next(err)
+                    }
+
+                )
+
+            // if no pie is retrieved, a 404 error handler is thrown
+            }else{
+
+                // 404 error handler
+                res.status(404).json({
+                    "status": 404,
+                    "statusText": "Not Found",
+                    "message": "The pie" + req.params.id + "could not be found.",
+                    "error": {
+                        "code": "NOT_FOUND",
+                        "message": "The pie" + req.params.id + "could not be found."
+                    }
+                })
+            }
+        },
+
+        // getById Arg 3
+        function(err){
+            next(err)
+        }
+
+    )
+})
+
+// NOTE: PUT requires ALL properties to be edited, whereas PATCH allows only some properties to be edited
+router.patch('/:id', function (req, res, next) {
+    
+    // LOGIC: check first if a pie is existing, then perform update()
+    pieRepo.getById(
+        
+        // getById Arg 1
+        req.params.id, 
+        
+        // getById Arg 2 (data here is now the retrieved pie)
+        function(data){
+
+            // if a pie is retrieved, update function will work
+            if(data){
+                pieRepo.update(
+
+                    // update Arg 1
+                    req.body, 
+
+                    // update Arg 2
+                    req.params.id, 
+
+                    // update Arg 3
+                    function (data) {
+                        res.status(200).json({
+                            "status": 200,
+                            "statusText": "OK",
+                            "message": "Pie " + req.params.id + " updated",
+                            "data": data
+                        })
+                    },
+
+                    // update Arg 4
+                    function(err){
+                        next(err)
+                    }
+
+                )
+
+            // if no pie is retrieved, a 404 error handler is thrown
+            }else{
+
+                // 404 error handler
+                res.status(404).json({
+                    "status": 404,
+                    "statusText": "Not Found",
+                    "message": "The pie" + req.params.id + "could not be found.",
+                    "error": {
+                        "code": "NOT_FOUND",
+                        "message": "The pie" + req.params.id + "could not be found."
+                    }
+                })
+            }
+        },
+
+        // getById Arg 3
+        function(err){
+            next(err)
+        }
+
+    )
+})
+
+router.delete('/:id', function(req, res, next) {
+
+    // Same logic as above
+    pieRepo.getById(
+
+        // getById Arg 1
+        req.params.id,
+
+        // getById Arg 2
+        function(data){
+            if(data){
+                pieRepo.delete(
+
+                    // delete Arg 1
+                    req.params.id, 
+    
+                    // delete Arg 2
+                    function (data) {
+                        res.status(200).json({
+                            "status": 200,
+                            "statusText": "OK",
+                            "message": "Pie " + req.params.id + " is deleted",
+                            "data": data
+                        })
+                    },
+    
+                    // delete Arg 3
+                    function(err){
+                        next(err)
+                    }
+    
+                )
+            }else{
+                // 404 error handler
+                res.status(404).json({
+                    "status": 404,
+                    "statusText": "Not Found",
+                    "message": "The pie" + req.params.id + "could not be found.",
+                    "error": {
+                        "code": "NOT_FOUND",
+                        "message": "The pie" + req.params.id + "could not be found."
+                    }
+                })
+            }
+        },
+        
+        // getById Arg 3
+        function(err){
+            next(err)
+        }
+
+    )
+
+})
 
 // IMPORTANT: MAKE SURE THAT THIS IS ALWAYS AT THE BOTTOM!!!!!
 

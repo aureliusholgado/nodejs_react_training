@@ -23,6 +23,8 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "consistent-return": "error",
+        "no-console": "error"
     }
 }

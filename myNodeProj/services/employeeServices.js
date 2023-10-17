@@ -1,4 +1,5 @@
 const pool = require("../utils/db.js")
+const bcrypt = require("bcrypt")
 
 const getEmployees = () => {
     return new Promise((resolve, reject) => {
@@ -14,10 +15,15 @@ const getEmployees = () => {
 };
 
 const registerEmployee = async (name, email, role, password) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
+
+        // Hash Password
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(password, salt)
+
         let query = "INSERT INTO employees (name, email, role, password) VALUES (?, ?, ?, ?)"
         pool.execute(
-            query, [name, email, role, password], 
+            query, [name, email, role, hash], 
             (err, results, fields) => {
                 if(err){
                     reject(err)
@@ -26,8 +32,13 @@ const registerEmployee = async (name, email, role, password) => {
                 }
             }
         )
+        
+        // Generate Token
+
     })
 }
+
+// Login -> bcrypt.compare(req.body.pw, passwordInDB) in essence
 
 module.exports = {
     getEmployees,

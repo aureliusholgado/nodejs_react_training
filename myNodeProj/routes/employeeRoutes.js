@@ -4,6 +4,7 @@ const employeeServices = require('../services/employeeServices.js')
 
 const router = express.Router()
 
+router.post("/register", employeeController.register)
 router.get("/", employeeController.getAllEmployees)
 
 // router.get("/", (req, res) => {

@@ -1,6 +1,50 @@
 import React, {useState} from 'react';
 import {Button, View, Text, Image, ScrollView, TextInput} from 'react-native';
 
+const logoImg = {
+  uri: 'https://reactnative.dev/img/tiny_logo.png',
+  width: 64,
+  height: 64,
+};
+
+const Logo = () => {
+    return(
+        <ScrollView direction>
+            <Text style={{fontSize: 96}}>Scroll me pls</Text>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Text style={{fontSize: 96}}>If you like</Text>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Text style={{fontSize: 96}}>Scrolling down</Text>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Text style={{fontSize: 96}}>What's the best</Text>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Text style={{fontSize: 96}}>Framework around?</Text>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Image source={logoImg}/>
+            <Text style={{fontSize: 80}}>React Native</Text>
+        </ScrollView>
+    )
+}
+
 const App = () => {
     const name = 'Aurelius'
     const introduce = (firstName, middleInitial, lastName) => {
@@ -36,17 +80,25 @@ const Picture = () => {
     )
 }
 
-const Input = () => {
+const DogTranslator = () => {
+    const [text, setText] = useState("")
     return(
         <View>
             <TextInput
-                style={{
-                    height: 40,
-                    borderColor: 'gray',
-                    borderWidth: 1,
-                }}
-                defaultValue="You can type in me"
+                style={{height: 40}}
+                placeholder="Type here to translate!"
+                onChangeText={newText => setText(newText)}
+                defaultValue={text}
             />
+
+            <Text style={{padding: 10, fontSize: 42}}>
+                {
+                    text
+                    .split(' ')
+                    .map(word => word && 'Ow!')
+                    .join(' ')
+                }
+            </Text>
         </View>
     )
 }
@@ -57,7 +109,7 @@ const Dog = props => {
         <View>
 
             <Text>
-                My name is {props.name}, and I am {isHungry ? 'hungry' : 'full'}!
+                {isHungry ? `My name is ${props.name}, and I am hungry` : `${props.name} is full!`}
             </Text>
 
             <Button
@@ -77,11 +129,13 @@ const Display = () => {
         <View>
             <App />
             <Picture />
-            <Input />
             <Nickname name="Eliot"/>
             <Nickname name="Ely"/>
             <Nickname name="El"/>
             <Dog name="Coco"/>
+            <Dog name="Crunch"/>
+            <DogTranslator />
+            <Logo/>
         </View>
     )
 }

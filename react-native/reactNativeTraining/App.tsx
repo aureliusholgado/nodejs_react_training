@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text, Image, ScrollView, TextInput} from 'react-native';
+import React, {useState} from 'react';
+import {Button, View, Text, Image, ScrollView, TextInput} from 'react-native';
 
 const App = () => {
     const name = 'Aurelius'
@@ -17,7 +17,7 @@ const App = () => {
 const Nickname = props => {
     return(
         <View>
-            <Text>Hello, my nickname is {props.name}</Text>
+            <Text>Hello, my name is {props.name}</Text>
         </View>
     )
 }
@@ -51,6 +51,27 @@ const Input = () => {
     )
 }
 
+const Dog = props => {
+    const [isHungry, setIsHungry] = useState(true)
+    return(
+        <View>
+
+            <Text>
+                My name is {props.name}, and I am {isHungry ? 'hungry' : 'full'}!
+            </Text>
+
+            <Button
+                onPress={()=>{
+                    setIsHungry(false)
+                }}
+                disabled={!isHungry}
+                title={isHungry ? 'Feed Me' : 'Thank you!'}
+            />
+
+        </View>
+    )
+}
+
 const Display = () => {
     return(
         <View>
@@ -60,6 +81,7 @@ const Display = () => {
             <Nickname name="Eliot"/>
             <Nickname name="Ely"/>
             <Nickname name="El"/>
+            <Dog name="Coco"/>
         </View>
     )
 }

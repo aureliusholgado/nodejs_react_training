@@ -50,4 +50,4 @@ export default App;
 
 // To see FlatList or SectionList, comment out everything else but either of these:
     // export default FlatListBasics;
-     // export default SectionListBasics;
+    // export default SectionListBasics;

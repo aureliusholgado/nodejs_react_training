@@ -1,10 +1,19 @@
-import React, {useState} from 'react';
-import {Button, View, Text, Image, ScrollView, TextInput} from 'react-native';
+import React from 'react';
+import {StyleSheet, View, Text} from 'react-native';
 
 const Nickname = props => {
+    const styles = StyleSheet.create({
+        text: {
+            fontSize: 20,
+            fontWeight: 'bold',
+        },
+    })
+
     return(
         <View>
-            <Text>Hello, my name is {props.name}</Text>
+            <Text style={[styles.text, props.style]}>
+                Hello, my name is {props.name}
+            </Text>
         </View>
     )
 }

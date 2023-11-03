@@ -1,22 +1,34 @@
 import React, {useState} from 'react';
 import {Button, View, Text, Image, ScrollView, TextInput} from 'react-native';
+import Picture from './Picture';
 
 const Dog = props => {
     const [isHungry, setIsHungry] = useState(true)
     return(
-        <View>
-
-            <Text>
+        <View
+            style={{
+                alignItems: 'center',
+                margin: 50
+            }}
+        >
+            <Picture/>
+            <Text style={[props.style]}>
                 {isHungry ? `My name is ${props.name}, and I am hungry` : `${props.name} is full!`}
             </Text>
 
-            <Button
-                onPress={()=>{
-                    setIsHungry(false)
+            <View
+                style={{
+                    margin:20
                 }}
-                disabled={!isHungry}
-                title={isHungry ? 'Feed Me' : 'Thank you!'}
-            />
+            >
+                <Button
+                    onPress={()=>{
+                        setIsHungry(false)
+                    }}
+                    disabled={!isHungry}
+                    title={isHungry ? 'Feed Me' : 'Thank you!'}
+                />
+            </View>
 
         </View>
     )

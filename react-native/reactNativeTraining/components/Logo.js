@@ -6,7 +6,7 @@ const logoImg = {
     height: 64,
   };
   
-  const Logo = () => {
+  const Logo = props => {
       return(
           <ScrollView direction>
               <Text style={{fontSize: 96}}>Scroll me pls</Text>

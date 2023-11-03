@@ -38,12 +38,9 @@ const SectionListBasics = () => {
                     </Text>
                 )}
 
-                // Extract the data into the variable 'item'
-                keyExtractor={item => `basicListEntry-${item}`}
-
-                // Render the item
+                // 
                 renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
-                
+                keyExtractor={item => `basicListEntry-${item}`}
             />
         </View>
     )

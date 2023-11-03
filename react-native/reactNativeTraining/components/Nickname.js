@@ -8,3 +8,5 @@ const Nickname = props => {
         </View>
     )
 }
+
+export default Nickname;

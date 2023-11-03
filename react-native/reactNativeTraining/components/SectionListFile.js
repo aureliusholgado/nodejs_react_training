@@ -30,13 +30,20 @@ const SectionListBasics = () => {
                     {title: 'D', data: ['Devin', 'Dan', 'Dominic']},
                     {title: 'J', data: ['Jackson', 'James', 'Jillian', 'Jimmy', 'Joel', 'John', 'Julie']},
                 ]}
-                renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+
+                // Render the Section Header
                 renderSectionHeader={({section}) => (
                     <Text style={styles.sectionHeader}>
                         {section.title}
                     </Text>
                 )}
+
+                // Extract the data into the variable 'item'
                 keyExtractor={item => `basicListEntry-${item}`}
+
+                // Render the item
+                renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+                
             />
         </View>
     )

@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, Appearance} from 'react-native';
+import {View, Text, TextInput, Appearance, Image} from 'react-native';
+import * as Animatable from 'react-native-animatable';
 
 const DogTranslator = props => {
+
     const theme = Appearance.getColorScheme()
     const [text, setText] = useState("")
+    const isTyping = text !== '';
     const variations = ['Ow!', 'Arf!', 'Woof!', 'Bark!', 'Yip!'];
 
     return(
@@ -12,7 +15,6 @@ const DogTranslator = props => {
                 style={{
                     fontSize: 24,
                     fontWeight: 'bold',
-                    margin: 10,
                     textAlign: 'center',
                     color: theme==='light'?'black':'white'
                 }}>
@@ -24,6 +26,7 @@ const DogTranslator = props => {
                     height: 40,
                     borderColor: theme === 'light' ? 'black' : 'white',
                     borderWidth: 1,
+                    margin: 15,
                     textAlign: 'center'
                 }}
                 placeholder="Type here to translate!"
@@ -48,6 +51,21 @@ const DogTranslator = props => {
                     .join(' ')
                 }
             </Text>
+
+            {isTyping && (
+                <Animatable.View style={{ alignItems: 'center' }}>
+
+                    <Animatable.Image
+                        animation="swing"
+                        duration={1000}
+                        iterationCount="infinite"
+                        source={require('../images/dog1.png')}
+                        style={{ width: 100, height: 150 }}
+                    />
+
+                </Animatable.View>
+            )}
+
         </View>
     )
 }

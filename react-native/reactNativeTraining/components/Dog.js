@@ -12,6 +12,7 @@ const Dog = props => {
             }}
         >
             <Picture/>
+
             <Text style={[props.style]}>
                 {isHungry ? `My name is ${props.name}, and I am hungry` : `${props.name} is full!`}
             </Text>

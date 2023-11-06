@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Appearance, View, Text, StyleSheet } from 'react-native';
+import { Appearance, ScrollView, View, Text, StyleSheet } from 'react-native';
 import Dog from './components/Dog.js';
 import DogTranslator from './components/DogTranslator.js';
 import Logo from './components/Logo.js';
@@ -25,8 +25,6 @@ const App = () => {
     const styles = StyleSheet.create({
         container: {
           flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
           backgroundColor: theme === 'light' ? 'white' : 'black',
         },
         text: {
@@ -35,14 +33,10 @@ const App = () => {
     });
     
     return(
-        <View style={styles.container}>
-            <FullName style={styles.text} />
-            <Nickname name="Eliot" style={styles.text} />
-            <Nickname name="Ely" style={styles.text} />
-            <Nickname name="El" style={styles.text} />
+        <ScrollView style={styles.container} contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}>
             <Dog name="Coco" style={styles.text} />
             <DogTranslator style={styles.text} />
-        </View>
+        </ScrollView>
     )
 }
 
@@ -51,3 +45,11 @@ export default App;
 // To see FlatList or SectionList, comment out everything else but either of these:
     // export default FlatListBasics;
     // export default SectionListBasics;
+
+// Commented components
+    /*
+        <FullName style={styles.text} />
+        <Nickname name="Eliot" style={styles.text} />
+        <Nickname name="Ely" style={styles.text} />
+        <Nickname name="El" style={styles.text} />
+    */

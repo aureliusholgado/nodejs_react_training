@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, Appearance} from 'react-native';
 
 const DogTranslator = props => {
+    const theme = Appearance.getColorScheme()
     const [text, setText] = useState("")
     const variations = ['Ow!', 'Arf!', 'Woof!', 'Bark!', 'Yip!'];
-    const theme = Appearance.getColorScheme();
+
     return(
         <View>
             <Text
@@ -12,7 +13,8 @@ const DogTranslator = props => {
                     fontSize: 24,
                     fontWeight: 'bold',
                     margin: 10,
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    color: theme==='light'?'black':'white'
                 }}>
                 Dog Translator
             </Text>

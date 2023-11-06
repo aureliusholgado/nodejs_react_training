@@ -10,24 +10,56 @@ const DogTranslator = props => {
     const variations = ['Ow!', 'Arf!', 'Woof!', 'Bark!', 'Yip!'];
 
     return(
-        <View>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+
+            <Text
+                style={[props.style]}>
+                Dog Translator
+            </Text>
+
+            {isTyping && (
+                <Animatable.View style={{ alignItems: 'center' }}>
+                    <Animatable.Image
+                        animation="swing"
+                        duration={1000}
+                        iterationCount="infinite"
+                        source={require('../images/dog1.png')}
+                        style={{ width: 300, height: 435 }}
+                    />
+                </Animatable.View>
+            )}
+
             <Text
                 style={{
+                    padding: 10,
                     fontSize: 24,
-                    fontWeight: 'bold',
                     textAlign: 'center',
-                    color: theme==='light'?'black':'white'
+                    color: theme==='light'?'black':'white',
+                    backgroundColor: theme==='light'?'white':'black', // Background color,
+                    borderRadius: 10,
+                    display: isTyping ? 'flex' : 'none'
                 }}>
-                Dog Translator
+
+                {
+                    text
+                    .split(' ')
+                    .map(word =>
+                        word ? variations[Math.floor(Math.random() * variations.length)] : ''
+                    )
+                    .join(' ')
+                }
             </Text>
 
             <TextInput
                 style={{
                     height: 40,
+                    width:200,
                     borderColor: theme === 'light' ? 'black' : 'white',
                     borderWidth: 1,
                     margin: 15,
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    color: theme==='light'?'black':'white',
+                    backgroundColor: theme==='light'?'white':'black', // Background color
                 }}
                 placeholder="Type here to translate!"
                 placeholderTextColor={theme === 'light' ? 'black' : 'white'}
@@ -35,36 +67,7 @@ const DogTranslator = props => {
                 defaultValue={text}
             />
 
-            <Text
-                style={{
-                    padding: 10,
-                    fontSize: 24,
-                    textAlign: 'center'
-                }}>
 
-                {
-                    text
-                    .split(' ')
-                    .map(word => 
-                        word ? variations[Math.floor(Math.random() * variations.length)] : ''
-                    )
-                    .join(' ')
-                }
-            </Text>
-
-            {isTyping && (
-                <Animatable.View style={{ alignItems: 'center' }}>
-
-                    <Animatable.Image
-                        animation="swing"
-                        duration={1000}
-                        iterationCount="infinite"
-                        source={require('../images/dog1.png')}
-                        style={{ width: 100, height: 150 }}
-                    />
-
-                </Animatable.View>
-            )}
 
         </View>
     )

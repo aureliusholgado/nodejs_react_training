@@ -20,11 +20,11 @@ const DogTranslator = props => {
             {isTyping && (
                 <Animatable.View style={{ alignItems: 'center' }}>
                     <Animatable.Image
+                        source={require('../images/dog1.png')}
+                        style={{ width: 300, height: 435 }}
                         animation="swing"
                         duration={1000}
                         iterationCount="infinite"
-                        source={require('../images/dog1.png')}
-                        style={{ width: 300, height: 435 }}
                     />
                 </Animatable.View>
             )}

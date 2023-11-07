@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Appearance, ScrollView, Text, StyleSheet, ImageBackground, Button } from 'react-native';
+import { Appearance, ScrollView, View, Text, StyleSheet, ImageBackground, Button, TouchableOpacity  } from 'react-native';
 import Dog from '../components/Dog.js';
 
 const FeedMePage = ({navigation}) => {
@@ -32,6 +32,17 @@ const FeedMePage = ({navigation}) => {
             padding: 5,
             textAlign: 'center',
             fontSize: 25
+        },
+        customButton: {
+            backgroundColor: theme === 'light' ? 'orange' : 'purple',
+            padding: 10,
+            borderRadius:10,
+            borderWidth: 3,
+            borderColor: theme === 'light' ? 'black' : 'white',
+            margin: 5
+        },
+        customButtonText: {
+            color: 'white'
         }
     });
 
@@ -41,15 +52,23 @@ const FeedMePage = ({navigation}) => {
             style={{flex:1}}
         >
             <ScrollView style={styles.container} contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}>
+
                 <Dog name="Coco" style={styles.text} />
-                <Button
-                    title="Go to Dog Translator"
-                    onPress={ () => navigation.navigate('Dog Translator') }
-                />
-                <Button
-                    title="Go to Practice Page"
-                    onPress = { () => navigation.navigate('Practice Page') }
-                />
+
+                <TouchableOpacity
+                    style={styles.customButton}
+                    onPress={() => navigation.navigate('Dog Translator')}
+                >
+                    <Text style={styles.customButtonText}>Go to Dog Translator</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.customButton}
+                    onPress = {() => navigation.navigate('Practice Page')}
+                >
+                    <Text style={styles.customButtonText} >Go to Practice Page</Text>
+                </TouchableOpacity>
+
             </ScrollView>
         </ImageBackground>
     )

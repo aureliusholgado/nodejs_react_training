@@ -25,6 +25,16 @@ const HomePage = ({navigation, route}) => {
           alignItems: 'center'
           //backgroundColor: theme === 'light' ? 'white' : 'black',
         },
+        headerText: {
+            backgroundColor: theme === 'light' ? 'black' : 'white',
+            color: theme === 'light' ? 'orange' : 'purple',
+            fontSize: 20,
+            padding: 5,
+            textAlign: 'center',
+            borderWidth: 5,
+            borderRadius: 10,
+            borderColor: theme === 'light' ? 'orange' : 'purple',
+        },
         text: {
             color: theme === 'light' ? 'white' : 'black',
             backgroundColor: theme === 'light' ? 'orange' : 'white',
@@ -33,7 +43,10 @@ const HomePage = ({navigation, route}) => {
             borderWidth:5,
             padding: 5,
             textAlign: 'center',
-            fontSize: 20
+            fontSize: 15,
+            margin:5,
+            width: 300
+
         },
         customButton: {
             backgroundColor: theme === 'light' ? 'orange' : 'purple',
@@ -95,7 +108,10 @@ const HomePage = ({navigation, route}) => {
                 </TouchableOpacity>
 
                 {route.params?.post && (
-                    <Text style={styles.text}>Post: {route.params?.post}</Text>
+                    <View>
+                        <Text style={styles.headerText}>POSTS</Text>
+                        <Text style={styles.text}>{route.params?.post}</Text>
+                    </View>
                 )}
 
             </ScrollView>

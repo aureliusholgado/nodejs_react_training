@@ -73,11 +73,7 @@ const CreatePostPage = ({navigation, route}) => {
                 <TouchableOpacity
                     style={styles.customButton}
                     onPress={() => {
-                        navigation.navigate({
-                            name: 'Home',
-                            params: {post: postText},
-                            merge: true,
-                        })
+                        navigation.navigate('Home', {post: postText})
                     }}
                 >
                     <Text style={styles.customButtonText}>Done</Text>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Appearance } from 'react-native'
+import { Appearance, Button } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomePage from './Pages/HomePage.js';
@@ -57,7 +57,16 @@ const App = () => {
                 <Stack.Screen
                     name = "Logo Title"
                     component={LogoTitle}
-                    options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
+                    options={{
+                        headerTitle: (props) => <LogoTitle {...props} />,
+                        headerRight: () => (
+                            <Button
+                              onPress={() => alert('This is a button!')}
+                              title="Info"
+                              color="black"
+                            />
+                        ),
+                    }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

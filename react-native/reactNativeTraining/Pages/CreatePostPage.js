@@ -1,8 +1,10 @@
-import React from 'react';
-import { Appearance, ScrollView, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { Appearance, ScrollView, Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput } from 'react-native';
 
 const CreatePostPage = ({navigation, route}) => {
     theme = Appearance.getColorScheme();
+
+    const [postText, setPostText] = useState('');
 
     // Background Paths
     const lightBG = require('../images/lightWP.jpg')
@@ -24,6 +26,30 @@ const CreatePostPage = ({navigation, route}) => {
             textAlign: 'center',
             fontSize: 20,
             margin: 5,
+        },
+        customButton: {
+            backgroundColor: theme === 'light' ? 'orange' : 'purple',
+            padding: 10,
+            borderRadius:10,
+            borderWidth: 3,
+            borderColor: theme === 'light' ? 'black' : 'white',
+            margin: 5
+        },
+        customButtonText: {
+            color: 'white',
+            fontSize:15,
+            textAlign:'center'
+        },
+        textInput: {
+            height: 100,
+            width: 300,
+            padding: 10,
+            backgroundColor: 'white',
+            color:'black',
+            borderRadius: 10,
+            borderWidth: 5,
+            borderColor:'gray',
+            textAlign:'center'
         }
     })
     return(
@@ -31,9 +57,34 @@ const CreatePostPage = ({navigation, route}) => {
             source={theme==='light' ? lightBG : darkBG}
             style={{flex:1}}
         >
+
             <ScrollView contentContainerStyle={styles.container}>
+
                 <Text style={styles.text}>Create Post Page</Text>
+                <TextInput
+                    multiline
+                    placeholder="What's on your mind?"
+                    placeholderTextColor='black'
+                    style={styles.textInput}
+                    value={{postText}}
+                    onChangeText={setPostText}
+                />
+
+                <TouchableOpacity
+                    style={styles.customButton}
+                    onPress={() => {
+                        navigation.navigate({
+                            name: 'Home',
+                            params: {post: postText},
+                            merge: true,
+                        })
+                    }}
+                >
+                    <Text style={styles.customButtonText}>Done</Text>
+                </TouchableOpacity>
+
             </ScrollView>
+
         </ImageBackground>
     )
 }

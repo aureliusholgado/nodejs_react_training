@@ -20,7 +20,7 @@ const PracticePage = ({navigation, route}) => {
             borderWidth:5,
             padding: 5,
             textAlign: 'center',
-            fontSize: 25,
+            fontSize: 20,
             margin: 5,
         },
         customButton: {
@@ -49,12 +49,12 @@ const PracticePage = ({navigation, route}) => {
 
             {/* itemId param */}
             {itemId !== undefined && (
-                <Text style={styles.text}>{JSON.stringify(itemId)}</Text>
+                <Text style={styles.text}>Item ID: {JSON.stringify(itemId)}</Text>
             )}
 
             {/* sampleParam */}
             {sampleParam !== undefined && (
-                <Text style={styles.text}> {JSON.stringify(sampleParam)} </Text>
+                <Text style={styles.text}>Sample Param: {JSON.stringify(sampleParam)} </Text>
             )}
 
             {/* Push Button */}

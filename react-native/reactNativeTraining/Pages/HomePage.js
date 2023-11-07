@@ -57,6 +57,7 @@ const HomePage = ({navigation, route}) => {
         >
             <ScrollView contentContainerStyle={styles.container}>
 
+                {/* Feed Me Page */}
                 <TouchableOpacity
                     style={styles.customButton}
                     onPress={()=>navigation.navigate("Feed Me")}
@@ -64,6 +65,7 @@ const HomePage = ({navigation, route}) => {
                     <Text style={styles.customButtonText}>Go to Feed Me Page</Text>
                 </TouchableOpacity>
 
+                {/* Dog Translator Page */}
                 <TouchableOpacity
                     style={styles.customButton}
                     onPress={() => navigation.navigate('Dog Translator')}
@@ -71,6 +73,7 @@ const HomePage = ({navigation, route}) => {
                     <Text style={styles.customButtonText}>Go to Dog Translator</Text>
                 </TouchableOpacity>
 
+                {/* Practice Page */}
                 <TouchableOpacity
                     style={styles.customButton}
                     onPress = {() => {
@@ -83,6 +86,7 @@ const HomePage = ({navigation, route}) => {
                     <Text style={styles.customButtonText} >Go to Practice Page</Text>
                 </TouchableOpacity>
 
+                {/* Create Post Page */}
                 <TouchableOpacity
                     style={styles.customButton}
                     onPress={()=>navigation.navigate('Create Post')}

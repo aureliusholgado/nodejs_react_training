@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Appearance, ScrollView, View, Text, StyleSheet, ImageBackground, Button, TouchableOpacity  } from 'react-native';
 import Dog from '../components/Dog.js';
+import LogoTitle from './LogoTitle.js'
 
 const HomePage = ({navigation, route}) => {
 
@@ -119,6 +120,7 @@ const HomePage = ({navigation, route}) => {
                     <Text style={styles.customButtonText}>Create Post</Text>
                 </TouchableOpacity>
 
+                {/* Display POST if available */}
                 {route.params?.post && (
                     <View>
                         <Text style={styles.postHeader}>POST</Text>
@@ -126,11 +128,23 @@ const HomePage = ({navigation, route}) => {
                     </View>
                 )}
 
+                {/* Change Title Button */}
                 <TouchableOpacity
                     style={styles.customButton}
-                    onPress={()=>navigation.setOptions({title:'Nice'})}
+                    onPress={() => navigation.setOptions({
+                        headerTitle: (props) => <LogoTitle {...props} />
+                        // title: 'NICE'
+                    })}
                 >
                     <Text style={styles.customButtonText}>Press to change the title</Text>
+                </TouchableOpacity>
+
+                {/* Logo Title Page */}
+                <TouchableOpacity
+                    style={styles.customButton}
+                    onPress = {()=>navigation.navigate('Logo Title')}
+                >
+                    <Text style={styles.customButtonText}>Logo Title</Text>
                 </TouchableOpacity>
 
             </ScrollView>

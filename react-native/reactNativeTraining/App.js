@@ -7,6 +7,7 @@ import FeedMePage from './Pages/FeedMePage.js';
 import DogTranslatorPage from './Pages/DogTranslatorPage.js';
 import PracticePage from './Pages/PracticePage.js';
 import CreatePostPage from './Pages/CreatePostPage.js'
+import LogoTitle from './Pages/LogoTitle.js'
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +54,11 @@ const App = () => {
                 <Stack.Screen name = "Dog Translator" component={DogTranslatorPage} />
                 <Stack.Screen name = "Practice Page" component={PracticePage} />
                 <Stack.Screen name = "Create Post" component={CreatePostPage} />
+                <Stack.Screen
+                    name = "Logo Title"
+                    component={LogoTitle}
+                    options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     )

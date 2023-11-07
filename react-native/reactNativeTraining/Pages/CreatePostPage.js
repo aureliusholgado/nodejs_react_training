@@ -4,6 +4,8 @@ import { Appearance, ScrollView, Text, StyleSheet, TouchableOpacity, ImageBackgr
 const CreatePostPage = ({navigation, route}) => {
     theme = Appearance.getColorScheme();
 
+    // NOTE!! You may use useEffect() to determine what happens with the post (e.g. db registration or whatsoever)
+
     const [postText, setPostText] = useState('');
 
     // Background Paths
@@ -66,7 +68,7 @@ const CreatePostPage = ({navigation, route}) => {
                     placeholder="What's on your mind?"
                     placeholderTextColor='black'
                     style={styles.textInput}
-                    value={{postText}}
+                    value={postText}
                     onChangeText={setPostText}
                 />
 

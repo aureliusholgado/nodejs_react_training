@@ -46,6 +46,10 @@ const FeedMePage = ({navigation}) => {
                     title="Go to Dog Translator"
                     onPress={ () => navigation.navigate('Dog Translator') }
                 />
+                <Button
+                    title="Go to Practice Page"
+                    onPress = { () => navigation.navigate('Practice Page') }
+                />
             </ScrollView>
         </ImageBackground>
     )

@@ -64,9 +64,21 @@ const FeedMePage = ({navigation}) => {
 
                 <TouchableOpacity
                     style={styles.customButton}
-                    onPress = {() => navigation.navigate('Practice Page')}
+                    onPress = {() => {
+                        navigation.navigate('Practice Page', {
+                            itemId: 99,
+                            sampleParam: "Hello from Param in Feed Me Page"
+                        })
+                    }}
                 >
                     <Text style={styles.customButtonText} >Go to Practice Page</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.customButton}
+                    onPress={()=>navigation.navigate('Create Post')}
+                >
+                    <Text style={styles.customButtonText}>Create Post</Text>
                 </TouchableOpacity>
 
             </ScrollView>

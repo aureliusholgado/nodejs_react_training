@@ -28,15 +28,15 @@ const CreatePostPage = ({navigation, route}) => {
             margin: 5,
         },
         customButton: {
-            backgroundColor: theme === 'light' ? 'orange' : 'purple',
+            backgroundColor: 'white',
             padding: 10,
             borderRadius:10,
             borderWidth: 3,
-            borderColor: theme === 'light' ? 'black' : 'white',
+            borderColor: theme === 'light' ? 'orange' : 'purple',
             margin: 5
         },
         customButtonText: {
-            color: 'white',
+            color: theme === 'light' ? 'orange' : 'purple',
             fontSize:15,
             textAlign:'center'
         },

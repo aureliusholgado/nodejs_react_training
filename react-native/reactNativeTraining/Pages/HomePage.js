@@ -25,8 +25,8 @@ const HomePage = ({navigation, route}) => {
           alignItems: 'center'
           //backgroundColor: theme === 'light' ? 'white' : 'black',
         },
-        headerText: {
-            backgroundColor: theme === 'light' ? 'black' : 'white',
+        postHeader: {
+            backgroundColor: 'white',
             color: theme === 'light' ? 'orange' : 'purple',
             fontSize: 20,
             padding: 5,
@@ -34,6 +34,18 @@ const HomePage = ({navigation, route}) => {
             borderWidth: 5,
             borderRadius: 10,
             borderColor: theme === 'light' ? 'orange' : 'purple',
+        },
+        postBody: {
+            color: 'black',
+            backgroundColor: 'white',
+            borderRadius: 10,
+            borderColor:'black',
+            borderWidth:5,
+            padding: 5,
+            textAlign: 'center',
+            fontSize: 15,
+            margin:5,
+            width: 300
         },
         text: {
             color: theme === 'light' ? 'white' : 'black',
@@ -109,8 +121,8 @@ const HomePage = ({navigation, route}) => {
 
                 {route.params?.post && (
                     <View>
-                        <Text style={styles.headerText}>POSTS</Text>
-                        <Text style={styles.text}>{route.params?.post}</Text>
+                        <Text style={styles.postHeader}>POST</Text>
+                        <Text style={styles.postBody}>{route.params?.post}</Text>
                     </View>
                 )}
 

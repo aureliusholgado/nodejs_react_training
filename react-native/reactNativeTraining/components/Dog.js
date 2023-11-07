@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, View, Text, Image, ScrollView, TextInput, Appearance} from 'react-native';
+import {Button, View, Text, Image, ScrollView, TextInput, Appearance, TouchableOpacity, StyleSheet } from 'react-native';
 import Picture from './Picture';
 
 const Dog = props => {
@@ -7,6 +7,23 @@ const Dog = props => {
     const theme = Appearance.getColorScheme();
     const hungryDog = require('../images/hungryDog.jpg')
     const happyDog = require('../images/happyDog.jpg')
+
+    const styles = StyleSheet.create({
+        customButton: {
+            backgroundColor: 'white',
+            padding: 10,
+            borderRadius:10,
+            borderWidth: 3,
+            borderColor: theme === 'light' ? 'orange' : 'purple',
+            margin: 5
+        },
+        customButtonText: {
+            color: theme === 'light' ? 'orange' : 'purple',
+            textAlign:'center',
+            fontSize: 20,
+        }
+    });
+
     return(
         <View
             style={{
@@ -31,24 +48,21 @@ const Dog = props => {
                 }}
             />
 
-
-
             <View
                 style={{
                     margin:20
                 }}
             >
-                <Button
+
+                <TouchableOpacity
                     onPress={()=>{
                         setIsHungry(false)
                     }}
                     disabled={!isHungry}
-                    title={isHungry ? 'Feed Me' : 'Thank you!'}
-                    style={{
-                        fontSize:100,
-                        backgroundColor: 'green'
-                    }}
-                />
+                    style={styles.customButton}
+                >
+                    <Text style={styles.customButtonText}>{isHungry ? 'Feed Me' : 'Thank you!'}</Text>
+                </TouchableOpacity>
 
             </View>
 

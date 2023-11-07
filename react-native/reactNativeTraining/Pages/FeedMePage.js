@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Appearance, ScrollView, View, Text, StyleSheet, ImageBackground, Button, TouchableOpacity  } from 'react-native';
+import { Appearance, ScrollView, View, Text, StyleSheet, ImageBackground, TouchableOpacity  } from 'react-native';
 import Dog from '../components/Dog.js';
 
 const FeedMePage = ({navigation}) => {
@@ -54,6 +54,7 @@ const FeedMePage = ({navigation}) => {
             <ScrollView style={styles.container} contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}>
                 <Dog name="Coco" style={styles.text} />
             </ScrollView>
+
         </ImageBackground>
     )
 }

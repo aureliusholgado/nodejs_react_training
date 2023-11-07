@@ -25,10 +25,10 @@ const DogTranslatorPage = ({navigation}) => {
           //backgroundColor: theme === 'light' ? 'white' : 'black',
         },
         text: {
-            color: theme === 'light' ? 'white' : 'black',
-            backgroundColor: theme === 'light' ? 'orange' : 'white',
+            color: 'white',
+            backgroundColor: theme === 'light' ? 'orange' : 'purple',
             borderRadius: 10,
-            borderColor:'black',
+            borderColor: theme === 'light' ? 'black' : 'white',
             borderWidth:5,
             padding: 5,
             textAlign: 'center',

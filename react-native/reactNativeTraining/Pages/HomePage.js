@@ -59,7 +59,6 @@ const HomePage = ({navigation, route}) => {
             fontSize: 15,
             margin:5,
             width: 300
-
         },
         customButton: {
             backgroundColor: theme === 'light' ? 'orange' : 'purple',
@@ -145,6 +144,14 @@ const HomePage = ({navigation, route}) => {
                     onPress = {()=>navigation.navigate('Logo Title')}
                 >
                     <Text style={styles.customButtonText}>Logo Title</Text>
+                </TouchableOpacity>
+
+                {/* Count Page */}
+                <TouchableOpacity
+                    style={styles.customButton}
+                    onPress = {()=>navigation.navigate('Count')}
+                >
+                    <Text style={styles.customButtonText}>Counter</Text>
                 </TouchableOpacity>
 
             </ScrollView>

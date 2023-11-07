@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Appearance, Button } from 'react-native'
+import { Appearance, Button, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomePage from './Pages/HomePage.js';
@@ -8,6 +8,7 @@ import DogTranslatorPage from './Pages/DogTranslatorPage.js';
 import PracticePage from './Pages/PracticePage.js';
 import CreatePostPage from './Pages/CreatePostPage.js'
 import LogoTitle from './Pages/LogoTitle.js'
+import Count from './Pages/Count.js'
 
 const Stack = createNativeStackNavigator();
 
@@ -68,6 +69,21 @@ const App = () => {
                         ),
                     }}
                 />
+
+                <Stack.Screen
+                    name = 'Count'
+                    component = {Count}
+                    options = { ({navigation, route}) => ({
+                        headerTitle: (props) => <Text style={{color:'white', fontWeight:'bold', fontSize:20}}>Counter</Text>,
+                        /*headerRight: () => (
+                            <Button
+                                title="Update Count"
+                                color="gray"
+                            />
+                        ),*/
+                    })}
+                />
+
             </Stack.Navigator>
         </NavigationContainer>
     )

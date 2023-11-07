@@ -11,14 +11,24 @@ import CreatePostPage from './Pages/CreatePostPage.js'
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-    const theme = Appearance.getColorScheme();
+    const [theme, setTheme] = useState(Appearance.getColorScheme());
+    useEffect(()=>{
+        const subscription = Appearance.addChangeListener( ({colorScheme}) => {
+            setTheme(colorScheme)
+        })
+        return() => {
+            subscription.remove()
+        };
+    }, [])
+
+    const headerBackgroundColor = theme ==='light'? '#f29216':'purple'
 
     return (
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={{
                     headerStyle: {
-                        backgroundColor: theme==='light'? '#f29216':'purple'
+                        backgroundColor: headerBackgroundColor
                     },
                     headerTintColor: 'white',
                     headerTitleStyle: {

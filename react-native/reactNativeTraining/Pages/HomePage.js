@@ -75,7 +75,7 @@ const HomePage = ({navigation, route}) => {
                     style={styles.customButton}
                     onPress={()=>navigation.navigate("Feed Me")}
                 >
-                    <Text style={styles.customButtonText}>Go to Feed Me Page</Text>
+                    <Text style={styles.customButtonText}>Feed Coco</Text>
                 </TouchableOpacity>
 
                 {/* Dog Translator Page */}
@@ -83,7 +83,7 @@ const HomePage = ({navigation, route}) => {
                     style={styles.customButton}
                     onPress={() => navigation.navigate('Dog Translator')}
                 >
-                    <Text style={styles.customButtonText}>Go to Dog Translator</Text>
+                    <Text style={styles.customButtonText}>Dog Translator</Text>
                 </TouchableOpacity>
 
                 {/* Practice Page */}
@@ -96,7 +96,7 @@ const HomePage = ({navigation, route}) => {
                         })
                     }}
                 >
-                    <Text style={styles.customButtonText} >Go to Practice Page</Text>
+                    <Text style={styles.customButtonText} >Practice Page</Text>
                 </TouchableOpacity>
 
                 {/* Create Post Page */}
@@ -113,6 +113,13 @@ const HomePage = ({navigation, route}) => {
                         <Text style={styles.text}>{route.params?.post}</Text>
                     </View>
                 )}
+
+                <TouchableOpacity
+                    style={styles.customButton}
+                    onPress={()=>navigation.setOptions({title:'Nice'})}
+                >
+                    <Text style={styles.customButtonText}>Press to change the title</Text>
+                </TouchableOpacity>
 
             </ScrollView>
         </ImageBackground>

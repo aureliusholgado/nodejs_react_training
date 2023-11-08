@@ -5,9 +5,7 @@ import SectionListBasics from '../components/SectionListFile'
 const SectionPage = ({navigation}) => {
     const theme = Appearance.getColorScheme()
     return(
-        <ScrollView>
-            <SectionListBasics/>
-        </ScrollView>
+        <SectionListBasics/>
     )
 }
 

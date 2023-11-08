@@ -9,7 +9,7 @@ import PracticePage from './Pages/PracticePage.js';
 import CreatePostPage from './Pages/CreatePostPage.js'
 import LogoTitle from './Pages/LogoTitle.js'
 import Count from './Pages/Count.js'
-import SectionPage from './Pages/SectionPage.js'
+import SectionListBasics from './components/SectionListFile.js'
 
 const Stack = createNativeStackNavigator();
 
@@ -85,7 +85,7 @@ const App = () => {
                     })}
                 />
 
-                <Stack.Screen name="Section Page" component={SectionPage} />
+                <Stack.Screen name="Section Page" component={SectionListBasics} />
 
             </Stack.Navigator>
         </NavigationContainer>

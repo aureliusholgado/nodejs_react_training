@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Appearance, SectionList, StyleSheet, ScrollView, View, Text, TouchableOpacity } from 'react-native'
+import { Appearance, SectionList, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import {SectionListData} from './SectionListData.js'
 
 const theme = Appearance.getColorScheme();
@@ -71,7 +71,6 @@ const SectionListBasics = () => {
                     return <View style={{ height: 5, backgroundColor: 'transparent' }} />;
                 }
             }}
-
         />
     )
 }

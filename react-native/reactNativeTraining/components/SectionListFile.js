@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Appearance, SectionList, StyleSheet, ScrollView, View, Text, TouchableOpacity } from 'react-native'
+import {SectionListData} from './SectionListData.js'
 
 const theme = Appearance.getColorScheme();
 
@@ -27,10 +28,7 @@ const styles = StyleSheet.create({
 
 const SectionListBasics = () => {
 
-    const [sectionData, setSectionData] = useState([
-        {title: 'D', data: ['Devin', 'Dan', 'Dominic'], collapsed: true },
-        {title: 'J', data: ['Jackson', 'James', 'Jillian', 'Jimmy', 'Joel', 'John', 'Julie'], collapsed: true }
-    ])
+    const [sectionData, setSectionData] = useState(SectionListData)
 
     const toggleSection = (sectionIndex) => {
         const updatedSectionData = [...sectionData];
@@ -39,41 +37,42 @@ const SectionListBasics = () => {
     }
 
     return(
-        <ScrollView style={styles.container}>
-            <SectionList
-                sections={sectionData}
+        <SectionList
 
-                // Render the Section Header
-                renderSectionHeader={({section, section:{title}}) => (
-                    <TouchableOpacity onPress = {() => toggleSection(sectionData.indexOf(section))} >
-                        <Text style={styles.sectionHeader}>{title}</Text>
-                    </TouchableOpacity>
-                )}
+            sections={sectionData}
 
-                // Render the Items
-                renderItem={({item, section}) => {
-                    if(section.collapsed){
-                        return null
-                    }else{
-                        return <Text style={styles.item}>{item}</Text>
-                    }
-                }}
+            // Render the Section Header
+            renderSectionHeader={({section, section:{title}}) => (
+                <TouchableOpacity onPress = {() => toggleSection(sectionData.indexOf(section))} >
+                    <Text style={styles.sectionHeader}>{title}</Text>
+                </TouchableOpacity>
+            )}
 
-                // Key Extractor
-                keyExtractor={(item, index) => `basicListEntry-${item}-${index}`}
+            // Render the Items
+            renderItem={({item, section}) => {
+                if(section.collapsed){
+                    return null
+                }else{
+                   return <Text style={styles.item}>{item}</Text>
+                }
+            }}
 
-                // Extra Data
-                extraData = {sectionData}
+            // Key Extractor
+            keyExtractor={(item, index) => `basicListEntry-${item}-${index}`}
 
-                renderSectionFooter={({ section }) => {
-                    if (section.collapsed) {
-                        return null;
-                    } else {
-                        return <View style={{ height: 5, backgroundColor: 'transparent' }} />;
-                    }
-                }}
-            />
-        </ScrollView>
+            // Extra Data
+            extraData = {sectionData}
+
+            // Section Footer
+            renderSectionFooter={({ section }) => {
+                if (section.collapsed) {
+                    return null;
+                } else {
+                    return <View style={{ height: 5, backgroundColor: 'transparent' }} />;
+                }
+            }}
+
+        />
     )
 }
 

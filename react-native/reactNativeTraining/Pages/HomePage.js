@@ -154,6 +154,14 @@ const HomePage = ({navigation, route}) => {
                     <Text style={styles.customButtonText}>Counter</Text>
                 </TouchableOpacity>
 
+                {/* Section Page */}
+                <TouchableOpacity
+                    style={styles.customButton}
+                    onPress = {()=>navigation.navigate('Section Page')}
+                >
+                    <Text style={styles.customButtonText}>Section Page</Text>
+                </TouchableOpacity>
+
             </ScrollView>
         </ImageBackground>
     )

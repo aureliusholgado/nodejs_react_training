@@ -1,32 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, Button } from 'react-native';
+import { Appearance, View, Text, Image, StyleSheet, Button } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import ImagePicker from 'react-native-image-crop-picker';
 
-const data = [];
-
-const styles = StyleSheet.create({
-    text: {
-        color:'black',
-        fontSize:20,
-        margin:10
-    },
-    carouselContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin:50
-    },
-    carouselImage: {
-        width: 200,
-        height: 200,
-        borderRadius: 10,
-    },
-});
-
 const MyCarousel = () => {
+    const data = [];
 
+    const [theme, setTheme] = useState(Appearance.getColorScheme());
+    useEffect(() => {
+        const subscription = Appearance.addChangeListener(({ colorScheme }) => {
+          setTheme(colorScheme);
+        });
+        return () => {
+          subscription.remove();
+        };
+    }, []);
     const [carouselData, setCarouselData] = useState(data);
+
+    const styles = StyleSheet.create({
+        text: {
+            color:'black',
+            fontSize:20,
+            margin:10
+        },
+        noImages: {
+            color: theme === 'light' ? 'orange' : 'purple',
+            margin:20,
+            fontSize: 15
+        },
+        carouselContainer: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin:50,
+        },
+        carouselImage: {
+            width: 200,
+            height: 200,
+            borderRadius: 10,
+            borderColor: 'black',
+            borderWidth: 10
+        },
+    });
 
     // Select from Gallery
     const selectImageFromGallery = () => {
@@ -54,7 +69,7 @@ const MyCarousel = () => {
         <Text style={styles.text}>Carousel</Text>
 
         {carouselData.length === 0 ? (
-            <Text style={styles.text}>No Images</Text>
+            <Text style={styles.noImages}>No Images</Text>
         ) : (
             <Carousel
                 data={carouselData}

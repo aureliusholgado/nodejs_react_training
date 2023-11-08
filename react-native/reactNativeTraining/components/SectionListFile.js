@@ -51,7 +51,13 @@ const SectionListBasics = () => {
                 )}
 
                 // Render the Items
-                renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+                renderItem={({item, section}) => {
+                    if(section.collapsed){
+                        return null
+                    }else{
+                        return <Text style={styles.item}>{item}</Text>
+                    }
+                }}
 
                 // Key Extractor
                 keyExtractor={(item, index) => `basicListEntry-${item}-${index}`}

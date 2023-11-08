@@ -52,20 +52,24 @@ const MyCarousel = () => {
     return (
     <View style={styles.carouselContainer}>
         <Text style={styles.text}>Carousel</Text>
-        <Carousel
-            data={carouselData}
-            renderItem={({ item }) => (
-              <View>
-                <Image source={item.image} style={styles.carouselImage} />
-              </View>
-            )}
-            sliderWidth={300}
-            itemWidth={200}
-            layout={'default'}
-            inactiveSlideOpacity={0.5} // This controls the fading effect
-            loop={true} // Enable infinite looping
-            loopClonesPerSide={carouselData.length} // Set the number of clones per side to match the number of items
-        />
+
+        {carouselData.length === 0 ? (
+            <Text style={styles.text}>No Images</Text>
+        ) : (
+            <Carousel
+                data={carouselData}
+                renderItem={({ item }) => (
+                    <Image source={item.image} style={styles.carouselImage} />
+                )}
+                sliderWidth={300}
+                itemWidth={200}
+                layout={'default'}
+                inactiveSlideOpacity={0.5} // This controls the fading effect
+                loop={true} // Enable infinite looping
+                loopClonesPerSide={carouselData.length} // Set the number of clones per side to match the number of items
+            />
+        )}
+
         <Button title="Add Image" onPress={selectImageFromGallery} />
     </View>
     );

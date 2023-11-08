@@ -162,6 +162,14 @@ const HomePage = ({navigation, route}) => {
                     <Text style={styles.customButtonText}>Section Page</Text>
                 </TouchableOpacity>
 
+                {/* Carousel Page */}
+                <TouchableOpacity
+                    style={styles.customButton}
+                    onPress = {()=>navigation.navigate('Carousel Page')}
+                >
+                    <Text style={styles.customButtonText}>Carousel Page</Text>
+                </TouchableOpacity>
+
             </ScrollView>
         </ImageBackground>
     )

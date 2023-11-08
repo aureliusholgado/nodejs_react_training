@@ -10,6 +10,7 @@ import CreatePostPage from './Pages/CreatePostPage.js'
 import LogoTitle from './Pages/LogoTitle.js'
 import Count from './Pages/Count.js'
 import SectionListBasics from './components/SectionListFile.js'
+import MyCarousel from './components/Carousel.js'
 
 const Stack = createNativeStackNavigator();
 
@@ -86,6 +87,7 @@ const App = () => {
                 />
 
                 <Stack.Screen name="Section Page" component={SectionListBasics} />
+                <Stack.Screen name="Carousel Page" component={MyCarousel} />
 
             </Stack.Navigator>
         </NavigationContainer>

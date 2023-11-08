@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Appearance, View, Text, Image, StyleSheet, Button } from 'react-native';
+import { Appearance, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import ImagePicker from 'react-native-image-crop-picker';
 
@@ -23,13 +23,17 @@ const MyCarousel = () => {
             fontSize:20,
             margin:10
         },
+        carousel: {
+            color: 'black',
+            fontSize:25,
+            margin: 20
+        },
         noImages: {
             color: theme === 'light' ? 'orange' : 'purple',
             margin:20,
             fontSize: 15
         },
         carouselContainer: {
-            flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
             margin:50,
@@ -38,9 +42,23 @@ const MyCarousel = () => {
             width: 200,
             height: 200,
             borderRadius: 10,
-            borderColor: 'black',
-            borderWidth: 10
+            borderColor: theme === 'light' ? 'orange' : 'purple',
+            borderWidth: 5,
+            borderRadius: 50
         },
+        addImage:{
+            alignItems:'center',
+            marginTop: 10,
+            paddingVertical: 15,
+            paddingHorizontal: 40,
+            borderColor: theme === 'light' ? 'orange' : 'purple',
+            borderWidth: 5,
+            borderRadius: 50
+        },
+        addImageText:{
+            color:'black',
+            fontSize:15
+        }
     });
 
     // Select from Gallery
@@ -66,7 +84,7 @@ const MyCarousel = () => {
 
     return (
     <View style={styles.carouselContainer}>
-        <Text style={styles.text}>Carousel</Text>
+        <Text style={styles.carousel}>Carousel</Text>
 
         {carouselData.length === 0 ? (
             <Text style={styles.noImages}>No Images</Text>
@@ -85,7 +103,11 @@ const MyCarousel = () => {
             />
         )}
 
-        <Button title="Add Image" onPress={selectImageFromGallery} />
+
+        <TouchableOpacity style={styles.addImage} onPress={selectImageFromGallery} >
+            <Text style={styles.addImageText}>Add Image</Text>
+        </TouchableOpacity>
+
     </View>
     );
 };

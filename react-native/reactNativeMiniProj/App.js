@@ -42,10 +42,10 @@ const App = () => {
             />
 
             <Stack.Screen
-                name = "Dog"
+                name = "Carousel"
                 component={CarouselPage}
                 options={{
-                    title: 'Login',
+                    title: 'Dogs',
                     headerTitleAlign: 'center', // Center the title
                     headerTitleStyle: {
                         fontWeight: 'bold', // You can adjust the style as needed

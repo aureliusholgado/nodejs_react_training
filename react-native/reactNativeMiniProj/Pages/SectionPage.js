@@ -7,9 +7,16 @@ const SectionPage = ({navigation, route}) => {
     useEffect(() => {
         navigation.setOptions({
             headerLeft: () => (
-                <View style={{ margin:10 }} >
-                    <TouchableOpacity onPress={resetState} >
-                        <Text>Logout</Text>
+                <View>
+                    <TouchableOpacity style={styles.logout} onPress={resetState} >
+                        <Text style={styles.logoutText}>Logout</Text>
+                    </TouchableOpacity>
+                </View>
+            ),
+            headerRight: () => (
+                <View>
+                    <TouchableOpacity style={styles.logout} onPress={() => navigation.navigate('Carousel')} >
+                        <Text style={styles.logoutText}>Carousel</Text>
                     </TouchableOpacity>
                 </View>
             )
@@ -31,20 +38,16 @@ const SectionPage = ({navigation, route}) => {
             flex: 1,
             paddingTop: 22,
         },
-        sectionHeader: {
-            paddingTop: 2,
-            paddingLeft: 10,
-            paddingRight: 10,
-            paddingBottom: 2,
-            fontSize: 14,
-            fontWeight: 'bold',
-            backgroundColor: 'green',
+        logout:{
+            margin: 10,
+            backgroundColor:'rgb(173, 179, 177)',
+            paddingVertical: 3,
+            paddingHorizontal: 10,
+            borderRadius:10
         },
-        item: {
-            padding: 10,
-            fontSize: 15,
-            height: 44,
-            color: 'black'
+        logoutText:{
+            color:'black',
+            fontSize: 12
         }
     });
 

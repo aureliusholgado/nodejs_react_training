@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { Appearance, SectionList, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
-import SectionListBasics from '../Components/SectionListFile.js'
+import {SectionListData} from '../Components/SectionListData.js'
 
 const SectionPage = ({navigation, route}) => {
+console.log(SectionListData)
+    const [sectionData, setSectionData] = useState(SectionListData)
 
     useEffect(() => {
         navigation.setOptions({
@@ -23,6 +25,12 @@ const SectionPage = ({navigation, route}) => {
         })
     }, [])
 
+    const toggleSection = (sectionIndex) => {
+        const updatedSectionData = [...sectionData];
+        updatedSectionData[sectionIndex].collapsed = !updatedSectionData[sectionIndex].collapsed;
+        setSectionData(updatedSectionData);
+    }
+
     const resetState = () => {
         navigation.navigate('Login', {
             resetState: true,
@@ -38,6 +46,20 @@ const SectionPage = ({navigation, route}) => {
             flex: 1,
             paddingTop: 22,
         },
+        sectionHeader: {
+            paddingVertical: 5,
+            paddingLeft: 10,
+            paddingRight: 10,
+            fontSize: 14,
+            fontWeight: 'bold',
+            backgroundColor: 'rgb(173, 179, 177)'
+        },
+        item: {
+            padding: 10,
+            fontSize: 15,
+            height: 44,
+            color: 'black'
+        },
         logout:{
             margin: 10,
             backgroundColor:'rgb(173, 179, 177)',
@@ -52,16 +74,42 @@ const SectionPage = ({navigation, route}) => {
     });
 
     return (
-        <View>
-            <View>
-                <SectionListBasics/>
-            </View>
-            <View style={styles.container}>
-                <TouchableOpacity onPress={() => navigation.navigate('Carousel')}>
-                    <Text>Go to Carousel</Text>
+        <SectionList
+            sections={sectionData}
+
+            // Render the Section Header
+            renderSectionHeader={({section, section:{title}}) => (
+                <TouchableOpacity onPress = {() => toggleSection(sectionData.indexOf(section))} >
+                    <Text style={styles.sectionHeader}>{title}</Text>
                 </TouchableOpacity>
-            </View>
-        </View>
+            )}
+
+            // Render the Items
+            renderItem={({item, section}) => {
+                if(section.collapsed){
+                    return null
+                }else{
+                   return(
+                        <Text style={styles.item}>{item}</Text>
+                   )
+                }
+            }}
+
+            // Key Extractor
+            keyExtractor={(item, index) => `basicListEntry-${item}-${index}`}
+
+            // Extra Data
+            extraData = {sectionData}
+
+            // Section Footer
+            renderSectionFooter={({ section }) => {
+                if (section.collapsed) {
+                    return null;
+                } else {
+                    return <View style={{ height: 5, backgroundColor: 'transparent' }} />;
+                }
+            }}
+        />
     )
 }
 

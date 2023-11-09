@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Appearance, ScrollView, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import WebView from 'react-native-webview'
 import Carousel from 'react-native-snap-carousel';
 import ImagePicker from 'react-native-image-crop-picker';
 
 const MyCarousel = ({navigation, route}) => {
-    console.log(loremIpsum)
     const data = [];
     const [carouselData, setCarouselData] = useState(data);
     const [loremIpsum, setLoremIpsum] = useState("");
@@ -25,7 +23,6 @@ const MyCarousel = ({navigation, route}) => {
         .then((data) => {
             const regex = /<p>|<\/p>/g;
             setLoremIpsum(data.replace(regex, ""));
-            console.log('loremimpsum: ' + loremIpsum)
         })
         .catch((error) => {
             console.error('Error fetching Lorem Ipsum:', error);
@@ -83,6 +80,22 @@ const MyCarousel = ({navigation, route}) => {
         }
     });
 
+    // Select from Camera
+    const selectImageFromCamera = () => {
+        ImagePicker.openCamera({
+            width:300,
+            height:400,
+            cropping: true
+        })
+        .then(image => {
+            console.log(image)
+            addImageToCarousel({uri: image.path})
+        })
+        .catch((error) => {
+            console.log('ImagePicker error:', error);
+        })
+    }
+
     // Select from Gallery
     const selectImageFromGallery = () => {
         ImagePicker.openPicker({
@@ -127,7 +140,7 @@ const MyCarousel = ({navigation, route}) => {
 
         <Text>{loremIpsum}</Text>
 
-        <TouchableOpacity style={styles.addImage}>
+        <TouchableOpacity style={styles.addImage} onPress={selectImageFromCamera}>
             <Text style={styles.addImageText}>Take Picture</Text>
         </TouchableOpacity>
 

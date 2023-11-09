@@ -1,11 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { Appearance, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Appearance, ScrollView, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import WebView from 'react-native-webview'
 import Carousel from 'react-native-snap-carousel';
 import ImagePicker from 'react-native-image-crop-picker';
 
 const MyCarousel = () => {
+    console.log(loremIpsum)
     const data = [];
     const [carouselData, setCarouselData] = useState(data);
+    const [loremIpsum, setLoremIpsum] = useState("");
+
+    useEffect(()=>{
+        fetchLoremIpsum();
+    }, []);
+
+    const fetchLoremIpsum = () => {
+        fetch('https://loripsum.net/api')
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then((data) => {
+            const regex = /<p>|<\/p>/g;
+            setLoremIpsum(data.replace(regex, ""));
+            console.log('loremimpsum: ' + loremIpsum)
+        })
+        .catch((error) => {
+            console.error('Error fetching Lorem Ipsum:', error);
+        });
+    };
+
+    const renderHtmlContent = () => {
+        return { __html: loremIpsum };
+    };
 
     const styles = StyleSheet.create({
         text: {
@@ -26,7 +55,7 @@ const MyCarousel = () => {
         carouselContainer: {
             justifyContent: 'center',
             alignItems: 'center',
-            margin:50
+            padding: 20
         },
         carouselImage: {
             width: 200,
@@ -50,7 +79,7 @@ const MyCarousel = () => {
         addImageText:{
             color:'black',
             fontSize:15,
-            textAlign:'center'
+            textAlign:'center',
         }
     });
 
@@ -76,7 +105,7 @@ const MyCarousel = () => {
     }
 
     return (
-    <View style={styles.carouselContainer}>
+    <ScrollView contentContainerStyle={styles.carouselContainer}>
         <Text style={styles.carousel}>Carousel</Text>
 
         {carouselData.length === 0 ? (
@@ -96,6 +125,8 @@ const MyCarousel = () => {
             />
         )}
 
+        <Text>{loremIpsum}</Text>
+
         <TouchableOpacity style={styles.addImage}>
             <Text style={styles.addImageText}>Take Picture</Text>
         </TouchableOpacity>
@@ -104,7 +135,7 @@ const MyCarousel = () => {
             <Text style={styles.addImageText}>Add Image</Text>
         </TouchableOpacity>
 
-    </View>
+    </ScrollView>
     );
 };
 

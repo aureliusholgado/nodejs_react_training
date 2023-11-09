@@ -8,23 +8,14 @@ const LoginPage = ({navigation, route}) => {
     const [borderColor, setBorderColor] = useState("gray")
     const [messageColor, setMessageColor] = useState("black")
 
-    console.log(route.params)
-
-    /*const resetLoginState = (newUsername, newPassword, newBorderColor, newErrorMessage) => {
-        setUsername(newUsername);
-        setPassword(newPassword);
-        setBorderColor(newBorderColor);
-        setMessage(newErrorMessage);
-    };
-
-    if (resetState) {
-        resetLoginState(
-            route.params.newUsername,
-            route.params.newPassword,
-            route.params.newBorderColor,
-            route.params.newErrorMessage
-        );
-    }*/
+    useEffect(()=>{
+        if(route.params){
+            setUsername(route.params.newUserName)
+            setPassword(route.params.newPassword)
+            setBorderColor(route.params.newBorderColor),
+            setMessage(route.params.newErrorMessage)
+        }
+    }, [route])
 
     const styles = StyleSheet.create({
         container:{
@@ -33,37 +24,56 @@ const LoginPage = ({navigation, route}) => {
             alignItems:'center'
         },
         text:{
-            color:'black'
+            color:'black',
+            fontSize:20,
+            margin:20
         },
         textInput: {
+            fontSize: 15,
             height: 50,
             width: 300,
             padding: 10,
             backgroundColor: 'white',
             color:'black',
             borderRadius: 10,
-            borderWidth: 5,
+            borderWidth: 3,
             borderColor:borderColor,
-            textAlign:'center',
             margin:10
         },
         message:{
             color:messageColor
+        },
+        customButton:{
+            backgroundColor:'rgb(173, 179, 177)',
+            padding: 10,
+            width: 200,
+            borderWidth: 3,
+            borderRadius: 10,
+            borderColor: 'black',
+            margin: 20
+        },
+        customButtonText:{
+            textAlign:'center',
+            color:'black',
+            fontSize: 15,
+            fontWeight:'bold'
         }
     })
 
     const handleLogin = () => {
-        if(username === 'username' && password === 'password'){
-            navigation.navigate('Section')
-            setMessage('Login Successful')
-            setBorderColor('green')
-            setMessageColor('green')
-        }else if(username.trim() === "" || password === ""){
-            setMessage('Missing input fields')
-            setBorderColor('red')
-            setMessageColor('red')
+        if (username && password) {
+            if(username === 'username' && password === 'password'){
+                navigation.navigate('Section')
+                setMessage('Login Successful')
+                setBorderColor('green')
+                setMessageColor('green')
+            }else{
+                setMessage('Invalid Credentials')
+                setBorderColor('red')
+                setMessageColor('red')
+            }
         }else{
-            setMessage('Invalid Credentials')
+            setMessage('Missing input fields')
             setBorderColor('red')
             setMessageColor('red')
         }
@@ -72,26 +82,25 @@ const LoginPage = ({navigation, route}) => {
     return (
         <View style={styles.container}>
 
-            {message === "" ? <Text style={styles.text}>Hello from Login Page</Text> : <Text style={styles.message}>{message}</Text>}
+            {message === "" ? <Text style={styles.text}>Login Page</Text> : <Text style={styles.message}>{message}</Text>}
 
             <TextInput
-                multiline
-                placeholder="username"
+                placeholder="Username"
                 style={styles.textInput}
                 value={username}
                 onChangeText={setUsername}
             />
 
             <TextInput
-                multiline
-                placeholder="password"
+                placeholder="Password"
                 style={styles.textInput}
                 value={password}
                 onChangeText={setPassword}
+                secureTextEntry
             />
 
-            <TouchableOpacity onPress={handleLogin} >
-                <Text>Login</Text>
+            <TouchableOpacity style={styles.customButton} onPress={handleLogin} >
+                <Text style={styles.customButtonText}>Login</Text>
             </TouchableOpacity>
 
         </View>

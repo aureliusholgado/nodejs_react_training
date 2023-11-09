@@ -4,7 +4,7 @@ import WebView from 'react-native-webview'
 import Carousel from 'react-native-snap-carousel';
 import ImagePicker from 'react-native-image-crop-picker';
 
-const MyCarousel = () => {
+const MyCarousel = ({navigation, route}) => {
     console.log(loremIpsum)
     const data = [];
     const [carouselData, setCarouselData] = useState(data);
@@ -106,7 +106,7 @@ const MyCarousel = () => {
 
     return (
     <ScrollView contentContainerStyle={styles.carouselContainer}>
-        <Text style={styles.carousel}>Carousel</Text>
+        <Text style={styles.carousel}> {route.params.item}'s Dogs </Text>
 
         {carouselData.length === 0 ? (
             <Text style={styles.noImages}>No Images</Text>

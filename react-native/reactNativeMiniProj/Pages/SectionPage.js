@@ -90,7 +90,9 @@ console.log(SectionListData)
                     return null
                 }else{
                    return(
-                        <Text style={styles.item}>{item}</Text>
+                        <TouchableOpacity onPress={()=>navigation.navigate('Carousel', {title:item})}>
+                            <Text style={styles.item}>{item}</Text>
+                        </TouchableOpacity>
                    )
                 }
             }}

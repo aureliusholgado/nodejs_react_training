@@ -3,7 +3,6 @@ import { Appearance, SectionList, StyleSheet, View, Text, TouchableOpacity } fro
 import {SectionListData} from '../Components/SectionListData.js'
 
 const SectionPage = ({navigation, route}) => {
-console.log(SectionListData)
     const [sectionData, setSectionData] = useState(SectionListData)
 
     useEffect(() => {

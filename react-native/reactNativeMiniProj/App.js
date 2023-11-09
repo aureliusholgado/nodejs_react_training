@@ -17,9 +17,41 @@ const App = () => {
     <NavigationContainer>
         <Stack.Navigator>
 
-            <Stack.Screen name = "Login" component={LoginPage} />
-            <Stack.Screen name = "Section" component={SectionPage} />
-            <Stack.Screen name = "Carousel" component={CarouselPage} />
+            <Stack.Screen
+                name = "Login"
+                component={LoginPage}
+                options={{
+                    title: 'Login',
+                    headerTitleAlign: 'center', // Center the title
+                    headerTitleStyle: {
+                        fontWeight: 'bold', // You can adjust the style as needed
+                    },
+                }}
+            />
+
+            <Stack.Screen
+                name = "Section"
+                component={SectionPage}
+                options={{
+                    title: 'Login',
+                    headerTitleAlign: 'center', // Center the title
+                    headerTitleStyle: {
+                        fontWeight: 'bold', // You can adjust the style as needed
+                    },
+                }}
+            />
+
+            <Stack.Screen
+                name = "Carousel"
+                component={CarouselPage}
+                options={{
+                    title: 'Login',
+                    headerTitleAlign: 'center', // Center the title
+                    headerTitleStyle: {
+                        fontWeight: 'bold', // You can adjust the style as needed
+                    },
+                }}
+            />
 
         </Stack.Navigator>
     </NavigationContainer>

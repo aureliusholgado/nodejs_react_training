@@ -16,7 +16,7 @@ const CarouselPage = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.text} >Hello from CarouselPage</Text>
+            <Text style={styles.text} >Hello from Carousel Page</Text>
         </View>
     )
 }

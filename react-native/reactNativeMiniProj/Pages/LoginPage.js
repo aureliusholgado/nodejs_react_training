@@ -1,11 +1,30 @@
 import React, {useState, useEffect} from 'react'
 import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
 
-const LoginPage = ({navigation}) => {
+const LoginPage = ({navigation, route}) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [message, setMessage] = useState("")
     const [borderColor, setBorderColor] = useState("gray")
-    const [errorMessage, setErrorMessage] = useState("")
+    const [messageColor, setMessageColor] = useState("black")
+
+    console.log(route.params)
+
+    /*const resetLoginState = (newUsername, newPassword, newBorderColor, newErrorMessage) => {
+        setUsername(newUsername);
+        setPassword(newPassword);
+        setBorderColor(newBorderColor);
+        setMessage(newErrorMessage);
+    };
+
+    if (resetState) {
+        resetLoginState(
+            route.params.newUsername,
+            route.params.newPassword,
+            route.params.newBorderColor,
+            route.params.newErrorMessage
+        );
+    }*/
 
     const styles = StyleSheet.create({
         container:{
@@ -28,26 +47,32 @@ const LoginPage = ({navigation}) => {
             textAlign:'center',
             margin:10
         },
-        errorMessage:{
-            color:'red'
+        message:{
+            color:messageColor
         }
     })
 
     const handleLogin = () => {
         if(username === 'username' && password === 'password'){
             navigation.navigate('Section')
-        }else{
+            setMessage('Login Successful')
+            setBorderColor('green')
+            setMessageColor('green')
+        }else if(username.trim() === "" || password === ""){
+            setMessage('Missing input fields')
             setBorderColor('red')
-            setErrorMessage('Invalid Credentials')
-            setUsername("")
-            setPassword("")
+            setMessageColor('red')
+        }else{
+            setMessage('Invalid Credentials')
+            setBorderColor('red')
+            setMessageColor('red')
         }
     }
 
     return (
         <View style={styles.container}>
 
-            {errorMessage === "" ? <Text style={styles.text}>Hello from Login Page</Text> : <Text style={styles.errorMessage}>{errorMessage}</Text>}
+            {message === "" ? <Text style={styles.text}>Hello from Login Page</Text> : <Text style={styles.message}>{message}</Text>}
 
             <TextInput
                 multiline
@@ -67,10 +92,6 @@ const LoginPage = ({navigation}) => {
 
             <TouchableOpacity onPress={handleLogin} >
                 <Text>Login</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.navigate('Carousel')}>
-                <Text>Go to Carousel</Text>
             </TouchableOpacity>
 
         </View>

@@ -14,13 +14,6 @@ console.log(SectionListData)
                         <Text style={styles.logoutText}>Logout</Text>
                     </TouchableOpacity>
                 </View>
-            ),
-            headerRight: () => (
-                <View>
-                    <TouchableOpacity style={styles.logout} onPress={() => navigation.navigate('Carousel')} >
-                        <Text style={styles.logoutText}>Carousel</Text>
-                    </TouchableOpacity>
-                </View>
             )
         })
     }, [])

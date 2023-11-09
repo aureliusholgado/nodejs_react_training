@@ -1,17 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+import { Appearance, SectionList, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import SectionListBasics from '../Components/SectionListFile.js'
 
 const SectionPage = ({navigation, route}) => {
-
-    const resetState = () => {
-        navigation.navigate('Login', {
-            resetState: true,
-            newUsername: '',
-            newPassword: '',
-            newBorderColor: 'black',
-            newErrorMessage: '',
-        });
-    };
 
     useEffect(() => {
         navigation.setOptions({
@@ -25,23 +16,48 @@ const SectionPage = ({navigation, route}) => {
         })
     }, [])
 
+    const resetState = () => {
+        navigation.navigate('Login', {
+            resetState: true,
+            newUsername: '',
+            newPassword: '',
+            newBorderColor: 'black',
+            newErrorMessage: '',
+        });
+    };
+
     const styles = StyleSheet.create({
-        container:{
-            flex:1,
-            justifyContent:'center',
-            alignItems:'center'
+        container: {
+            flex: 1,
+            paddingTop: 22,
         },
-        text:{
-            color:'black'
+        sectionHeader: {
+            paddingTop: 2,
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingBottom: 2,
+            fontSize: 14,
+            fontWeight: 'bold',
+            backgroundColor: 'green',
+        },
+        item: {
+            padding: 10,
+            fontSize: 15,
+            height: 44,
+            color: 'black'
         }
-    })
+    });
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>Hello from Section Page</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Carousel')}>
-                <Text>Go to Carousel</Text>
-            </TouchableOpacity>
+        <View>
+            <View>
+                <SectionListBasics/>
+            </View>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => navigation.navigate('Carousel')}>
+                    <Text>Go to Carousel</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }

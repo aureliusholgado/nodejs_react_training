@@ -33,7 +33,7 @@ const App = () => {
                 name = "Section"
                 component={SectionPage}
                 options={{
-                    title: 'Login',
+                    title: 'My List',
                     headerTitleAlign: 'center', // Center the title
                     headerTitleStyle: {
                         fontWeight: 'bold', // You can adjust the style as needed
@@ -42,7 +42,7 @@ const App = () => {
             />
 
             <Stack.Screen
-                name = "Carousel"
+                name = "Dog"
                 component={CarouselPage}
                 options={{
                     title: 'Login',

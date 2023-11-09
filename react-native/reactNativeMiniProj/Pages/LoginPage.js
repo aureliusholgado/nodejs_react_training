@@ -68,7 +68,7 @@ const LoginPage = ({navigation, route}) => {
                 setBorderColor('green')
                 setMessageColor('green')
             }else{
-                setMessage('Invalid Credentials')
+                setMessage('Invalid username or password')
                 setBorderColor('red')
                 setMessageColor('red')
             }

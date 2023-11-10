@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Appearance, SectionList, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import {SectionListData} from '../Components/SectionListData.js'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SectionPage = ({navigation, route}) => {
     const [sectionData, setSectionData] = useState(SectionListData)
@@ -9,7 +10,7 @@ const SectionPage = ({navigation, route}) => {
         navigation.setOptions({
             headerLeft: () => (
                 <View>
-                    <TouchableOpacity style={styles.logout} onPress={resetState} >
+                    <TouchableOpacity style={styles.logout} onPress={handleLogout} >
                         <Text style={styles.logoutText}>Logout</Text>
                     </TouchableOpacity>
                 </View>
@@ -31,6 +32,18 @@ const SectionPage = ({navigation, route}) => {
             newBorderColor: 'black',
             newErrorMessage: '',
         });
+    };
+
+    const handleLogout = async () => {
+        try {
+            // Clear the user token from AsyncStorage
+            await AsyncStorage.removeItem('TOKEN');
+        } catch (error) {
+            console.error('Error clearing user token:', error);
+        }
+
+        // Navigate to the login page and reset the state
+        resetState();
     };
 
     const styles = StyleSheet.create({

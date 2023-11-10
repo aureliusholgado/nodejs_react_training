@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginPage = ({navigation, route}) => {
     const [username, setUsername] = useState("")
@@ -8,14 +9,31 @@ const LoginPage = ({navigation, route}) => {
     const [borderColor, setBorderColor] = useState("gray")
     const [messageColor, setMessageColor] = useState("black")
 
-    useEffect(()=>{
-        if(route.params){
-            setUsername(route.params.newUserName)
-            setPassword(route.params.newPassword)
-            setBorderColor(route.params.newBorderColor),
-            setMessage(route.params.newErrorMessage)
+    useEffect(() => {
+        // Check for route parameters
+        if (route.params) {
+            setUsername(route.params.newUserName);
+            setPassword(route.params.newPassword);
+            setBorderColor(route.params.newBorderColor);
+            setMessage(route.params.newErrorMessage);
         }
-    }, [route])
+
+        // Check for user authentication
+        const checkUserAuthentication = async () => {
+        try {
+            const userToken = await AsyncStorage.getItem('TOKEN');
+            // Check if the user is already authenticated
+            if (userToken) {
+                navigation.navigate('Section');
+            }
+        } catch (error) {
+            console.error('Error checking user authentication:', error);
+        }
+    };
+
+  checkUserAuthentication();
+}, [route]); // Include route as a dependency
+
 
     const styles = StyleSheet.create({
         container:{
@@ -60,9 +78,15 @@ const LoginPage = ({navigation, route}) => {
         }
     })
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (username && password) {
             if(username === 'username' && password === 'password'){
+                try {
+                    await AsyncStorage.setItem('TOKEN', 'TOKEN');
+                } catch (error) {
+                    console.error('Error saving user token:', error);
+                }
+
                 navigation.navigate('Section')
                 setMessage('Login Successful')
                 setBorderColor('green')
@@ -82,7 +106,7 @@ const LoginPage = ({navigation, route}) => {
     return (
         <View style={styles.container}>
 
-            {message === "" ? <Text style={styles.text}>Login Page</Text> : <Text style={styles.message}>{message}</Text>}
+            {message && <Text style={styles.message}>{message}</Text>}
 
             <TextInput
                 placeholder="Username"

@@ -20,13 +20,6 @@ const App = () => {
             <Stack.Screen
                 name = "Login"
                 component={LoginPage}
-                options={{
-                    title: 'Login',
-                    headerTitleAlign: 'center', // Center the title
-                    headerTitleStyle: {
-                        fontWeight: 'bold', // You can adjust the style as needed
-                    },
-                }}
             />
 
             <Stack.Screen

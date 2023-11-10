@@ -31,8 +31,8 @@ const LoginPage = ({navigation, route}) => {
         }
     };
 
-  checkUserAuthentication();
-}, [route]); // Include route as a dependency
+      checkUserAuthentication();
+    }, [route]); // Include route as a dependency
 
 
     const styles = StyleSheet.create({
@@ -80,7 +80,7 @@ const LoginPage = ({navigation, route}) => {
         if (username && password) {
             if(username === 'username' && password === 'password'){
                 try {
-                    await AsyncStorage.setItem('TOKEN', 'TOKEN');
+                    await AsyncStorage.setItem('TOKEN', 'myToken');
                 } catch (error) {
                     console.error('Error saving user token:', error);
                 }

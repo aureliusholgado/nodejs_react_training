@@ -96,7 +96,9 @@ const SectionPage = ({navigation, route}) => {
             return null;
         } else {
             return (
-                <TouchableOpacity onPress={() => navigation.navigate('Carousel', { title: item, item: item })}>
+                <TouchableOpacity onPress={() => navigation.navigate('Carousel', {
+                    title: item
+                })}>
                     <Text style={styles.item}>{item}</Text>
                 </TouchableOpacity>
             );

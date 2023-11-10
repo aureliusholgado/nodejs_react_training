@@ -46,44 +46,17 @@ const MyCarousel = ({navigation, route}) => {
             textAlign:'center',
         }
     });
-    const pic1 = require('../images/pic1.jpg')
     const data = [
         {image: require('../images/pic1.jpg')},
         {image: require('../images/pic2.jpg')},
         {image: require('../images/pic3.jpg')},
         {image: require('../images/pic4.jpg')}
     ];
+
     const [carouselData, setCarouselData] = useState(data);
     const [loremIpsum, setLoremIpsum] = useState("");
     const [isLoading, setIsLoading] = useState(false)
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
-
-    useEffect(()=>{
-        fetchLoremIpsum();
-    }, []);
-
-    const fetchLoremIpsum = async () => {
-        setIsLoading(true)
-        try{
-
-            const response = await fetch('https://loripsum.net/api')
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.text();
-            const regex = /<p>|<\/p>/g;
-            setLoremIpsum(data.replace(regex, ""));
-        } catch(error) {
-            console.error('Error fetching Lorem Ipsum:', error);
-        } finally {
-            setIsLoading(false)
-        }
-    };
-
-    const renderHtmlContent = () => {
-        return { __html: loremIpsum };
-    };
 
     // Select from Camera
     const selectImageFromCamera = () => {
@@ -94,7 +67,6 @@ const MyCarousel = ({navigation, route}) => {
                 cropping: true
             })
             .then(image => {
-                console.log(image)
                 addImageToCarousel({uri: image.path})
             })
             .catch((error) => {
@@ -134,11 +106,69 @@ const MyCarousel = ({navigation, route}) => {
         }
     }
 
+    // Function to save images to AsyncStorage for the current item
+    const saveImagesToStorage = async (updatedCarouselData) => {
+        try {
+            // Convert the carouselData array to JSON
+            const carouselDataJSON = JSON.stringify(updatedCarouselData);
+
+            // Use the item's key as the AsyncStorage key (replace 'itemKey' with your actual key)
+            await AsyncStorage.setItem(route.params.title, carouselDataJSON);
+        } catch (error) {
+            console.error('Error saving images to AsyncStorage:', error);
+        }
+    };
+
+    // Function to load images from AsyncStorage for the current item
+    const loadImagesFromStorage = async () => {
+        try {
+            // Retrieve the JSON data from AsyncStorage based on the item's key
+            const storedData = await AsyncStorage.getItem(route.params.title);
+
+            if (storedData) {
+                // Parse the JSON and update carouselData
+                setCarouselData(JSON.parse(storedData));
+            }
+        } catch (error) {
+            console.error('Error loading images from AsyncStorage:', error);
+        }
+    };
+
     // Add Image to Carousel
     const addImageToCarousel = (newImage) => {
         const updatedCarousel = [{image: newImage}, ...carouselData]
         setCarouselData(updatedCarousel)
+        saveImagesToStorage(updatedCarousel);
     }
+
+    useEffect(()=>{
+        fetchLoremIpsum();
+        loadImagesFromStorage();
+    }, []);
+
+    // Lorem Ipsum
+    const fetchLoremIpsum = async () => {
+        setIsLoading(true)
+        try{
+
+            const response = await fetch('https://loripsum.net/api')
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.text();
+            const regex = /<p>|<\/p>/g;
+            setLoremIpsum(data.replace(regex, ""));
+        } catch(error) {
+            console.error('Error fetching Lorem Ipsum:', error);
+        } finally {
+            setIsLoading(false)
+        }
+    };
+
+    const renderHtmlContent = () => {
+        return { __html: loremIpsum };
+    };
 
     return (
     <ScrollView contentContainerStyle={styles.carouselContainer}>

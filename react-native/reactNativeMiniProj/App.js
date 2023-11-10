@@ -20,6 +20,9 @@ const App = () => {
             <Stack.Screen
                 name = "Login"
                 component={LoginPage}
+                options={{
+                    headerShown: false
+                }}
             />
 
             <Stack.Screen

@@ -54,7 +54,7 @@ const LoginPage = ({navigation, route}) => {
             backgroundColor: 'white',
             color:'black',
             borderRadius: 10,
-            borderWidth: 3,
+            borderWidth: message === "" ? null : 3,
             borderColor:borderColor,
             margin:10
         },
@@ -65,9 +65,7 @@ const LoginPage = ({navigation, route}) => {
             backgroundColor:'rgb(173, 179, 177)',
             padding: 10,
             width: 200,
-            borderWidth: 3,
             borderRadius: 10,
-            borderColor: 'black',
             margin: 20
         },
         customButtonText:{

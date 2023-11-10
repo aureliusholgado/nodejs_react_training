@@ -26,7 +26,7 @@ const LoginPage = ({navigation, route}) => {
         text:{
             color:'black',
             fontSize:20,
-            margin:20
+            marginBottom:20
         },
         textInput: {
             fontSize: 15,

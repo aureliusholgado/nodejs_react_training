@@ -60,50 +60,32 @@ const MyCarousel = ({navigation, route}) => {
 
     // Select from Camera
     const selectImageFromCamera = () => {
-        if(carouselData.length < 8){
-            ImagePicker.openCamera({
-                width:300,
-                height:400,
-                cropping: true
-            })
-            .then(image => {
-                addImageToCarousel({uri: image.path})
-            })
-            .catch((error) => {
-                console.log('ImagePicker error:', error);
-            })
-        }else{
-            Alert.alert("Maximum Limit Reached", "You can no longer add pictures.", [
-                {
-                    text: "OK",
-                    onPress: () => setIsButtonDisabled(true)
-                }
-            ]);
-        }
+        ImagePicker.openCamera({
+            width:300,
+            height:400,
+            cropping: true
+        })
+        .then(image => {
+            addImageToCarousel({uri: image.path})
+        })
+        .catch((error) => {
+            console.log('ImagePicker error:', error);
+        })
     }
 
     // Select from Gallery
     const selectImageFromGallery = () => {
-        if(carouselData.length < 8){
-            ImagePicker.openPicker({
-                width: 300,
-                height: 400,
-                cropping: true,
-            })
-            .then((image) => {
-                addImageToCarousel({ uri: image.path }); // Use 'path' to access the selected image path
-            })
-            .catch((error) => {
-                console.log('ImagePicker error:', error);
-            });
-        }else{
-            Alert.alert("Maximum Limit Reached", "You can no longer add pictures.", [
-                {
-                    text: "OK",
-                    onPress: () => setIsButtonDisabled(true)
-                }
-            ]);
-        }
+        ImagePicker.openPicker({
+            width: 300,
+            height: 400,
+            cropping: true,
+        })
+        .then((image) => {
+            addImageToCarousel({ uri: image.path }); // Use 'path' to access the selected image path
+        })
+        .catch((error) => {
+            console.log('ImagePicker error:', error);
+        });
     }
 
     // Function to save images to AsyncStorage for the current item
@@ -146,6 +128,17 @@ const MyCarousel = ({navigation, route}) => {
         loadImagesFromStorage();
     }, []);
 
+    useEffect(()=>{
+        if (carouselData.length == 8) {
+            Alert.alert("Maximum Limit Reached", "You can no longer add pictures.", [
+                {
+                    text: "OK",
+                    onPress: () => setIsButtonDisabled(true)
+                }
+            ]);
+        }
+    }, [carouselData])
+
     // Lorem Ipsum
     const fetchLoremIpsum = async () => {
         setIsLoading(true)
@@ -174,22 +167,18 @@ const MyCarousel = ({navigation, route}) => {
     <ScrollView contentContainerStyle={styles.carouselContainer}>
         <Text style={styles.carousel}> {route.params.item} </Text>
 
-        {carouselData.length === 0 ? (
-            <Text style={styles.noImages}>No Images</Text>
-        ) : (
-            <Carousel
-                data={carouselData}
-                renderItem={({ item }) => (
-                    <Image source={item.image} style={styles.carouselImage} />
-                )}
-                sliderWidth={450}
-                itemWidth={200}
-                layout={'default'}
-                inactiveSlideOpacity={0.5} // This controls the fading effect
-                loop={true} // Enable infinite looping
-                loopClonesPerSide={carouselData.length} // Set the number of clones per side to match the number of items
-            />
-        )}
+        <Carousel
+            data={carouselData}
+            renderItem={({ item }) => (
+                <Image source={item.image} style={styles.carouselImage} />
+            )}
+            sliderWidth={450}
+            itemWidth={200}
+            layout={'default'}
+            inactiveSlideOpacity={0.5} // This controls the fading effect
+            loop={true} // Enable infinite looping
+            loopClonesPerSide={carouselData.length} // Set the number of clones per side to match the number of items
+        />
 
         {isLoading ? <ActivityIndicator size="large" color="black" style={{ margin: 20 }} /> : <Text>{loremIpsum}</Text>}
 

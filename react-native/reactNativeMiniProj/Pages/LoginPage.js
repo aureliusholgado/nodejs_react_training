@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
+import {View, Text, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginPage = ({navigation, route}) => {
@@ -8,6 +8,7 @@ const LoginPage = ({navigation, route}) => {
     const [message, setMessage] = useState("")
     const [borderColor, setBorderColor] = useState("gray")
     const [messageColor, setMessageColor] = useState("black")
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         // Check for route parameters
@@ -20,19 +21,21 @@ const LoginPage = ({navigation, route}) => {
 
         // Check for user authentication
         const checkUserAuthentication = async () => {
-        try {
-            const userToken = await AsyncStorage.getItem('TOKEN');
-            // Check if the user is already authenticated
-            if (userToken) {
-                navigation.navigate('Section');
+            try {
+                const userToken = await AsyncStorage.getItem('TOKEN');
+                // Check if the user is already authenticated
+                if (userToken) {
+                    navigation.replace('Section');
+                }
+            } catch (error) {
+                console.error('Error checking user authentication:', error);
+            } finally {
+                setIsLoading(false);
             }
-        } catch (error) {
-            console.error('Error checking user authentication:', error);
-        }
-    };
+        };
 
-      checkUserAuthentication();
-    }, [route]); // Include route as a dependency
+        checkUserAuthentication();
+    }, [route]);
 
 
     const styles = StyleSheet.create({
@@ -99,6 +102,14 @@ const LoginPage = ({navigation, route}) => {
             setBorderColor('red')
             setMessageColor('red')
         }
+    }
+
+    if (isLoading) {
+        return (
+            <View style={styles.container}>
+                <ActivityIndicator size="large" color="black" />
+            </View>
+        )
     }
 
     return (

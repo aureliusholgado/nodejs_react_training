@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         paddingBottom: 2,
         fontSize: 14,
         fontWeight: 'bold',
-        backgroundColor: 'green',
+        backgroundColor: 'gray',
       },
       item: {
         padding: 10,

@@ -8,7 +8,6 @@ const SectionPage = ({navigation, route}) => {
     const styles = StyleSheet.create({
         container:{
             flex:1,
-            alignItems: isLoading ? 'center' : null,
             justifyContent:'center',
         },
         sectionHeader: {
@@ -39,7 +38,6 @@ const SectionPage = ({navigation, route}) => {
     });
 
     const [sectionData, setSectionData] = useState(SectionListData)
-    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         navigation.setOptions({
@@ -52,10 +50,6 @@ const SectionPage = ({navigation, route}) => {
             )
         })
     }, [])
-
-    setTimeout(() => {
-        setIsLoading(false);
-    }, 2000);
 
     const toggleSection = (sectionIndex) => {
         const updatedSectionData = [...sectionData];
@@ -108,30 +102,21 @@ const SectionPage = ({navigation, route}) => {
     return (
 
         <View style={styles.container}>
+            <SectionList
+                sections={sectionData}
 
-            {isLoading ?
-                (
-                    <View>
-                        <ActivityIndicator size="large" color="black" />
-                    </View>
-                ) :
-                <SectionList
-                    sections={isLoading ? []: sectionData}
+                // Render the Section Header
+                renderSectionHeader={renderSectionHeader}
 
-                    // Render the Section Header
-                    renderSectionHeader={renderSectionHeader}
+                // Render the Items
+                renderItem={renderItem}
 
-                    // Render the Items
-                    renderItem={renderItem}
+                // Key Extractor
+                keyExtractor={(item, index) => `basicListEntry-${item}-${index}`}
 
-                    // Key Extractor
-                    keyExtractor={(item, index) => `basicListEntry-${item}-${index}`}
-
-                    // Extra Data
-                    extraData = {sectionData}
-                />
-            }
-
+                // Extra Data
+                extraData = {sectionData}
+            />
         </View>
     )
 }

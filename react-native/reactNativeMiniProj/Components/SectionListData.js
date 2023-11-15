@@ -4,132 +4,132 @@ export const SectionListData = [
     {
         title: 'A',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'B',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'C',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'D',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'E',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'F',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'G',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'H',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'I',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'J',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'K',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'L',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'M',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'N',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'O',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'P',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'Q',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'R',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'S',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'T',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'U',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'V',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'W',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'X',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'Y',
         data: [],
-        collapsed: true
+        collapsed: false
     },
     {
         title: 'Z',
         data: [],
-        collapsed: true
+        collapsed: false
     },
 ];
 

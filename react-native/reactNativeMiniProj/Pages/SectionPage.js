@@ -100,7 +100,6 @@ const SectionPage = ({navigation, route}) => {
     };
 
     return (
-
         <View style={styles.container}>
             <SectionList
                 sections={sectionData}

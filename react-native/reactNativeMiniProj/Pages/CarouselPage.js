@@ -120,7 +120,14 @@ const MyCarousel = ({navigation, route}) => {
     const addImageToCarousel = (newImage) => {
         const updatedCarousel = [{image: newImage}, ...carouselData]
         setCarouselData(updatedCarousel)
-        saveImagesToStorage(updatedCarousel);
+        if(updatedCarousel.length == 8){
+            Alert.alert("Maximum Limit Reached", "You can no longer add pictures.", [
+                {
+                    text: "OK"
+                }
+            ]);
+            saveImagesToStorage(updatedCarousel);
+        }
     }
 
     useEffect(()=>{
@@ -130,12 +137,7 @@ const MyCarousel = ({navigation, route}) => {
 
     useEffect(()=>{
         if (carouselData.length == 8) {
-            Alert.alert("Maximum Limit Reached", "You can no longer add pictures.", [
-                {
-                    text: "OK",
-                    onPress: () => setIsButtonDisabled(true)
-                }
-            ]);
+            setIsButtonDisabled(true)
         }
     }, [carouselData])
 
